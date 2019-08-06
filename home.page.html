@@ -1,0 +1,31 @@
+<!--in this Home page we are going login and signup the application -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      WelCome To Food Court
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="email" ng-required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Password</ion-label>
+    <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="password" ng-required></ion-input>
+  </ion-item>
+  <div text-center margin-top>
+      <ion-button   margin-center (click)="login()">
+        Login
+      </ion-button>
+
+    <ion-button margin-center (click)="signup()"> <!--signup() is home.ts file--> 
+      SignUp
+    </ion-button>
+
+  </div>
+</ion-content>
