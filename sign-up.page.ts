@@ -36,7 +36,7 @@ export class SignUpPage implements OnInit {
       "first_name" : this.first_name,
       "last_name" : this.last_name,
       "contact_no" : this.contact_no,
-      "role" : "Customer",
+      "role" : "Vendor",
       "address" : this.address
     },
     options).pipe(map(res => res.json())).subscribe(data => { //res will convert into json format and stores it and .subscribe(data it provide continuous data 
