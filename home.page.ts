@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Headers, RequestOptions, Http } from '@angular/http';
 import { map } from 'rxjs/operators';
+import { HomeService } from 'src/app/home.service';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,8 @@ import { map } from 'rxjs/operators';
 export class HomePage {
   email: any;
   password: any;
-
-  constructor(private router: Router, private http: Http) {}
+fullname : any;
+  constructor(private router: Router, private http: Http, private homeservice: HomeService) {}
   signup() {
     this.router.navigate(['sign-up']);
   }
@@ -28,9 +29,16 @@ export class HomePage {
       
     options).pipe(map(res =>res.json())).subscribe(data =>{
       console.log(data);
+      //this.fullname = data.value;
+     // alert(data.fullname);
+      //call setUserMethod from service
+      this.homeservice.setUserObject(data);
+      this.router.navigate(['display']);
+
     },(err) => {
       alert(err);
-      console.log("login succesfull");
+      console.log("error");
+      //this.router.navigate(['display', data]);
     
 
     })
