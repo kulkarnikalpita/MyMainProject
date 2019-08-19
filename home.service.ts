@@ -47,7 +47,7 @@ export class HomeService {
   }
   setUserObject(val: any) {
     this.userObject = val;
-}
+}//set the in home.ts file
 fetchCategory() {
   return this.http
   .get(
@@ -60,7 +60,7 @@ fetchCategory() {
             displaypages.push(
               new DisplayProduct(
                 i,
-                resData[i].id,
+                resData[i]._id,
                 resData[i].name,
                 resData[i].image_url
                )
@@ -136,24 +136,30 @@ fetchProducts() {
     );
 }
 fetchSpecificCategory(category_id: string) {
+
+ //var val = 'http://ec2-13-233-254-150.ap-south-1.compute.amazonaws.com/catalog/api/product/category/' + category_id + '/1';
+//alert(val);
   return this.http
-  .get<SpecificDetail>(
-    'ec2-13-233-254-150.ap-south-1.compute.amazonaws.com/catalog/api/product/category/${category_id}/1')
+  .get(
+    'http://ec2-13-233-254-150.ap-south-1.compute.amazonaws.com/catalog/api/product/category/' + category_id + '/3')
     .pipe(
       map(resData => {
         const specificpages = [];
         for (const i in resData) {
           if (resData.hasOwnProperty(i)) {
             var server_url = "http://ec2-13-233-254-150.ap-south-1.compute.amazonaws.com";
-            var str = server_url+""+resData[i].image_url;
+            var str = server_url+"/"+resData[i].image_url;
 
             var image_url_new = str;
             specificpages.push(
               new SpecificDetail(
-                i,
+              //  category_id,
+              //  i,
+                category_id,
                 resData[i].image_urls,
                 resData[i].id,
                 resData[i].barcode,
+                
                 resData[i].brand,
                 resData[i].category_id,
                 resData[i].code,
@@ -173,10 +179,15 @@ fetchSpecificCategory(category_id: string) {
                 resData[i].category
                )
             );
+            //alert('categoryid');
           }
+          
         }
+       //alert('category_id');
         return specificpages;
+        //alert('resData.categoryid');
         //return [];
+
       }),
       tap(specificpages => {
         this._specificpages.next(specificpages);
