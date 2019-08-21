@@ -1,8 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>productlist</ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button autoHide="false" ></ion-menu-button>
+      <ion-menu-button autoHide="false" slot="start" ></ion-menu-button>
+<ion-title> {{catName}}</ion-title>
+    <!-- <ion-title>productlist</ion-title> -->
+
+    <ion-buttons slot="primary">
+        <ion-button routerLink="/cart">
+    <ion-icon name="cart" slot="end" style="zoom:2.0;" ></ion-icon>
+    </ion-button>
        <!--if we want to use side menu in anyPage for that we have to use <ion-menu-button></ion-menu-button>-->
    </ion-buttons>
   </ion-toolbar>
@@ -15,15 +20,18 @@
            
               <ion-card *ngFor="let specific of specificDetails ">
                 <ion-card-content class="content-box">
-                <h2 class="md-text">  {{ specific.name }}</h2>
-                  <ion-thumbnail slot="end">
-                      <ion-img [src]="specific.image_url"></ion-img>
-                    </ion-thumbnail><br>
-                  <h2 class="md-text"> {{ specific.description }}</h2><br>
-                  <h2 class="md-text">  {{ specific.veg_non_veg }}</h2><br>
-                    <h2 class="md-text">  {{ specific.uom }}</h2><br>
-                      <h2 class="md-text">  {{ specific.weight }}</h2><br>
-                      <ion-button margin-center (click)= "addCart()"> 
+                    <ion-thumbnail slot="end">
+                        <ion-img [src]="specific.image_url"></ion-img>
+                      </ion-thumbnail><br>
+                <h2 class="md-text"> Name: {{ specific.name }}</h2>
+                 
+                  <h2 class="md-text">Description: {{ specific.description }}</h2><br>
+                  <h2 class="md-text">Veg/Non-veg:  {{ specific.veg_non_veg }}</h2><br>
+                    <h2 class="md-text">uom:  {{ specific.uom }}</h2><br>
+                      <h2 class="md-text">weight:  {{ specific.weight }}</h2><br>
+                       <h2 class="md-text">price: {{ specific.price}}</h2>
+                      <ion-button
+                       margin-center (click)= "addCart(specific)"> 
                         Add cart
                       </ion-button>
                   </ion-card-content>
