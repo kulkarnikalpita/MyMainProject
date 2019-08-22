@@ -15,6 +15,7 @@ import { DisplayProduct } from './app.component.model';
 export class AppComponent {
   products: DisplayProduct[];
   displaySub: any;
+  router: any;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -26,18 +27,23 @@ export class AppComponent {
   ngOnInit() {
     this.displaySub = this.homeService._displaypages.subscribe(displaypages => {
       this.products = displaypages;
+
       });
-    }
+}
     ionViewWillEnter() {
       this.homeService.fetchCategory().subscribe(() => {
       });
+     // this.router.navigate(['productlist']);
     }
-    //this.router.navigate(['productlist']);
+  // this.router.navigate(['productlist']);
   // onFetchData() {
   //   this.displaySub = this.homeService._displaypages.subscribe(displaypages => {
   //     this.products = displaypages;
   //     });
   // }
+  onClick() {
+    alert('hello');
+  }
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();

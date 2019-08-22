@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SpecificDetail } from './productlist/productlist.model';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 //import { Subject, Observable } from 'rxjs';
 //import { ProductlistPage } from './productlist/productlist.page';
 
@@ -9,6 +10,7 @@ import { SpecificDetail } from './productlist/productlist.model';
 export class CartService {
   specificDetails: SpecificDetail[] = [];
 //  specificDetail: any;
+//specific:any;
   constructor() {
    }
 
@@ -25,7 +27,9 @@ export class CartService {
       //console.log(this.specificDetails);
       return this.specificDetails;
     }
-
+    getLength() {
+      return this.specificDetails.length;
+    }
 
 
 

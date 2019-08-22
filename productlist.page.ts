@@ -14,6 +14,7 @@ specificSub: any;
 specificDetails: SpecificDetail[];
 catId: any;
 catName: any;
+cartCount: any;
 _id: any;
 //activatedRoute: any;
   constructor(private homeService: HomeService,
@@ -21,6 +22,7 @@ _id: any;
               private router: Router,
               private cartService: CartService,
               private alertCtrl: AlertController) { }
+
 
   ngOnInit() {
     // this.specificSub = this.homeService.fetchSpecificCategory(this.catId).subscribe(specificpages => {
@@ -34,14 +36,18 @@ ionViewWillEnter() {
   this.specificSub = this.homeService.fetchSpecificCategory(this.catId).subscribe(specificpages => {
   this.specificDetails = specificpages;
   });
+  //from CartService
+  this.cartCount= this.cartService.getLength();
  // this.homeService.fetchSpecificCategory(this.catId).subscribe(() => {
   //  });
  }
 
-
+ 
  addCart(specific: any) {
-   this.cartService.addToCart(specific);
-   this.showConfirm();
+  this.cartService.addToCart(specific);
+  this.showConfirm();
+  //from cartService
+  this.cartCount= this.cartService.getLength();
   // alert("cart succesfully");
     }
     async showConfirm() {
