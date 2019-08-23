@@ -11,8 +11,6 @@ import { Details } from './display.model';
 export class DisplayPage implements OnInit {
   name: any;
   detailSub: any;
-  //products: DisplayProduct[];
-  //displaySub: any;
   id: any;
   image_url: any;
   productDetails: Details[];
@@ -22,6 +20,7 @@ export class DisplayPage implements OnInit {
       this.productDetails = detailspages;
       });
       this.getNameFromService();
+      //alert('id');
   }
   ionViewWillEnter() {
     this.homeService.fetchProducts().subscribe(() => {
